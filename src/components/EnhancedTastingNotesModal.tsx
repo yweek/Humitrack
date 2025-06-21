@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { X, Star, Camera, Flame, Wind, Eye, Trash2 } from 'lucide-react';
+import { X, Star, Camera, Flame, Wind, Eye, Trash2, Image } from 'lucide-react';
 import CigarCutterIcon from './CigarCutterIcon';
 import { Cigar, TastingNote } from '../types';
 import { flavorTags } from '../data/cigarDatabase';
@@ -30,6 +30,7 @@ export default function EnhancedTastingNotesModal({
   const [photos, setPhotos] = useState<string[]>([]);
   const [activeTab, setActiveTab] = useState('rating');
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const galleryInputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -100,6 +101,12 @@ export default function EnhancedTastingNotesModal({
   const handleCameraCapture = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click();
+    }
+  };
+
+  const handleGallerySelect = () => {
+    if (galleryInputRef.current) {
+      galleryInputRef.current.click();
     }
   };
 
@@ -277,17 +284,40 @@ export default function EnhancedTastingNotesModal({
                   <div>
                     <div className="flex items-center justify-between mb-2">
                       <label className="block text-sm font-medium text-gray-700">Photos</label>
-                      <button
-                        type="button"
-                        onClick={handleCameraCapture}
-                        className="text-amber-600 hover:text-amber-700 flex items-center space-x-1 text-sm"
-                      >
-                        <Camera className="h-4 w-4" />
-                        <span>Add a photo</span>
-                      </button>
+                      <div className="flex space-x-2">
+                        <button
+                          type="button"
+                          onClick={handleCameraCapture}
+                          className="text-amber-600 hover:text-amber-700 flex items-center space-x-1 text-sm"
+                        >
+                          <Camera className="h-4 w-4" />
+                          <span>Camera</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={handleGallerySelect}
+                          className="text-amber-600 hover:text-amber-700 flex items-center space-x-1 text-sm"
+                        >
+                          <Image className="h-4 w-4" />
+                          <span>Gallery</span>
+                        </button>
+                      </div>
                     </div>
+                    
+                    {/* Camera input */}
                     <input
                       ref={fileInputRef}
+                      type="file"
+                      accept="image/*"
+                      capture="environment"
+                      multiple
+                      onChange={handleFileSelect}
+                      className="hidden"
+                    />
+                    
+                    {/* Gallery input */}
+                    <input
+                      ref={galleryInputRef}
                       type="file"
                       accept="image/*"
                       multiple
@@ -318,14 +348,24 @@ export default function EnhancedTastingNotesModal({
                       <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
                         <Camera className="h-10 w-10 text-gray-400 mx-auto mb-2" />
                         <p className="text-gray-500 mb-2">No photos added</p>
-                        <button
-                          type="button"
-                          onClick={handleCameraCapture}
-                          className="px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 inline-flex items-center space-x-2"
-                        >
-                          <Camera className="h-4 w-4" />
-                          <span>Add photos</span>
-                        </button>
+                        <div className="flex space-x-2 justify-center">
+                          <button
+                            type="button"
+                            onClick={handleCameraCapture}
+                            className="px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 inline-flex items-center space-x-2"
+                          >
+                            <Camera className="h-4 w-4" />
+                            <span>Camera</span>
+                          </button>
+                          <button
+                            type="button"
+                            onClick={handleGallerySelect}
+                            className="px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 inline-flex items-center space-x-2"
+                          >
+                            <Image className="h-4 w-4" />
+                            <span>Gallery</span>
+                          </button>
+                        </div>
                       </div>
                     )}
                   </div>
