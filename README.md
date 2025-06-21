@@ -2,7 +2,6 @@
 
 Une application moderne de gestion de collection de cigares avec interface élégante et fonctionnalités avancées.
 
-**🔄 Test de déploiement automatique - $(date)**
 
 ## ✨ Fonctionnalités
 

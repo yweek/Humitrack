@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { useAuth } from './hooks/useAuth';
 import { useSupabaseData } from './hooks/useSupabaseData';
 import AuthForm from './components/AuthForm';
@@ -85,14 +86,17 @@ function App() {
   };
 
   return (
-    <Layout 
-      currentPage={currentPage} 
-      onPageChange={handlePageChange}
-      userEmail={user.email}
-      onSignOut={handleSignOut}
-    >
-      {renderPage()}
-    </Layout>
+    <>
+      <Layout 
+        currentPage={currentPage} 
+        onPageChange={handlePageChange}
+        userEmail={user.email}
+        onSignOut={handleSignOut}
+      >
+        {renderPage()}
+      </Layout>
+      <Analytics />
+    </>
   );
 }
 
