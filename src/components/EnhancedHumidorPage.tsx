@@ -172,20 +172,20 @@ export default function EnhancedHumidorPage({
       {/* Humidor Selector */}
       <div className="bg-white rounded-2xl p-4 shadow-lg border border-amber-200">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3">
             <div className="p-2 bg-amber-600 rounded-xl">
-              <Archive className="h-5 w-5 text-white" />
+              <Archive className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-amber-900">Humidor Selection</h2>
-              <p className="text-sm text-amber-600">Choose which humidor to view</p>
+              <h2 className="text-base sm:text-lg font-bold text-amber-900">Humidor Selection</h2>
+              <p className="text-xs sm:text-sm text-amber-600">Choose which humidor to view</p>
             </div>
           </div>
-          <div className="flex items-center space-x-3">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
             <select
               value={selectedHumidor}
               onChange={(e) => setSelectedHumidor(e.target.value)}
-              className="px-4 py-2 bg-amber-50 border border-amber-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200 text-amber-900 font-medium"
+              className="px-3 py-2 bg-amber-50 border border-amber-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200 text-amber-900 font-medium text-sm"
             >
               <option value="all">All Humidors</option>
               {humidors.map(humidor => (
@@ -196,7 +196,7 @@ export default function EnhancedHumidorPage({
             </select>
             <button
               onClick={() => setShowHumidorManager(true)}
-              className="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl font-medium transition-all duration-200 shadow-md hover:shadow-lg"
+              className="px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl font-medium transition-all duration-200 shadow-md hover:shadow-lg text-sm"
             >
               Manage Humidors
             </button>
@@ -213,16 +213,16 @@ export default function EnhancedHumidorPage({
         >
           <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-amber-600 rounded-xl shadow-md">
-              <AlertTriangle className="h-5 w-5 text-white" />
+              <AlertTriangle className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
             </div>
-            <h3 className="text-lg font-bold text-amber-800">Low Stock Alert</h3>
+            <h3 className="text-base sm:text-lg font-bold text-amber-800">Low Stock Alert</h3>
           </div>
-          <p className="text-amber-700 mb-3 font-medium">
+          <p className="text-amber-700 mb-3 font-medium text-sm">
             {lowStockCigars.length} cigar{lowStockCigars.length !== 1 ? 's' : ''} running low
           </p>
           <div className="flex flex-wrap gap-2">
             {lowStockCigars.map(cigar => (
-              <span key={cigar.id} className="px-3 py-1 bg-amber-100 text-amber-800 text-sm rounded-xl font-medium">
+              <span key={cigar.id} className="px-2 py-1 bg-amber-100 text-amber-800 text-xs rounded-xl font-medium">
                 {cigar.brand} {cigar.name} ({cigar.quantity})
               </span>
             ))}
@@ -231,20 +231,20 @@ export default function EnhancedHumidorPage({
       )}
 
       {/* Header Stats */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="bg-white p-6 rounded-2xl shadow-lg border border-amber-200"
+          className="bg-white p-4 sm:p-6 rounded-2xl shadow-lg border border-amber-200"
         >
-          <div className="flex items-center">
-            <div className="p-3 bg-amber-600 rounded-xl shadow-md">
-              <BarChart3 className="h-8 w-8 text-white" />
+          <div className="flex items-center justify-center sm:justify-start">
+            <div className="p-2 sm:p-3 bg-amber-600 rounded-xl shadow-md">
+              <BarChart3 className="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 text-white" />
             </div>
-            <div className="ml-4">
-              <p className="text-sm text-amber-700 font-medium">Total Cigars</p>
-              <p className="text-2xl font-bold text-amber-900">{totalCigars}</p>
+            <div className="ml-3 sm:ml-4 text-center sm:text-left">
+              <p className="text-xs sm:text-sm text-amber-700 font-medium">Total Cigars</p>
+              <p className="text-lg sm:text-xl lg:text-2xl font-bold text-amber-900">{totalCigars}</p>
             </div>
           </div>
         </motion.div>
@@ -253,15 +253,15 @@ export default function EnhancedHumidorPage({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="bg-white p-6 rounded-2xl shadow-lg border border-amber-200"
+          className="bg-white p-4 sm:p-6 rounded-2xl shadow-lg border border-amber-200"
         >
-          <div className="flex items-center">
-            <div className="p-3 bg-amber-600 rounded-xl shadow-md">
-              <BarChart3 className="h-8 w-8 text-white" />
+          <div className="flex items-center justify-center sm:justify-start">
+            <div className="p-2 sm:p-3 bg-amber-600 rounded-xl shadow-md">
+              <BarChart3 className="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 text-white" />
             </div>
-            <div className="ml-4">
-              <p className="text-sm text-amber-700 font-medium">Collection Value</p>
-              <p className="text-2xl font-bold text-amber-900">${totalValue.toFixed(2)}</p>
+            <div className="ml-3 sm:ml-4 text-center sm:text-left">
+              <p className="text-xs sm:text-sm text-amber-700 font-medium">Collection Value</p>
+              <p className="text-lg sm:text-xl lg:text-2xl font-bold text-amber-900">${totalValue.toFixed(2)}</p>
             </div>
           </div>
         </motion.div>
@@ -270,15 +270,15 @@ export default function EnhancedHumidorPage({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="bg-white p-6 rounded-2xl shadow-lg border border-amber-200"
+          className="bg-white p-4 sm:p-6 rounded-2xl shadow-lg border border-amber-200"
         >
-          <div className="flex items-center">
-            <div className="p-3 bg-amber-600 rounded-xl shadow-md">
-              <Tag className="h-8 w-8 text-white" />
+          <div className="flex items-center justify-center sm:justify-start">
+            <div className="p-2 sm:p-3 bg-amber-600 rounded-xl shadow-md">
+              <Tag className="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 text-white" />
             </div>
-            <div className="ml-4">
-              <p className="text-sm text-amber-700 font-medium">Unique Brands</p>
-              <p className="text-2xl font-bold text-amber-900">{new Set(cigars.map(c => c.brand)).size}</p>
+            <div className="ml-3 sm:ml-4 text-center sm:text-left">
+              <p className="text-xs sm:text-sm text-amber-700 font-medium">Unique Brands</p>
+              <p className="text-lg sm:text-xl lg:text-2xl font-bold text-amber-900">{new Set(cigars.map(c => c.brand)).size}</p>
             </div>
           </div>
         </motion.div>
@@ -287,83 +287,83 @@ export default function EnhancedHumidorPage({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="bg-white p-6 rounded-2xl shadow-lg border border-amber-200"
+          className="bg-white p-4 sm:p-6 rounded-2xl shadow-lg border border-amber-200"
         >
-          <div className="flex items-center">
-            <div className="p-3 bg-amber-600 rounded-xl shadow-md">
-              <Star className="h-8 w-8 text-white" />
+          <div className="flex items-center justify-center sm:justify-start">
+            <div className="p-2 sm:p-3 bg-amber-600 rounded-xl shadow-md">
+              <Star className="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 text-white" />
             </div>
-            <div className="ml-4">
-              <p className="text-sm text-amber-700 font-medium">Tasting Notes</p>
-              <p className="text-2xl font-bold text-amber-900">{tastingNotes.length}</p>
+            <div className="ml-3 sm:ml-4 text-center sm:text-left">
+              <p className="text-xs sm:text-sm text-amber-700 font-medium">Tasting Notes</p>
+              <p className="text-lg sm:text-xl lg:text-2xl font-bold text-amber-900">{tastingNotes.length}</p>
             </div>
           </div>
         </motion.div>
       </div>
 
       {/* Search and Controls */}
-      <div className="bg-white rounded-2xl p-6 shadow-lg border border-amber-200">
+      <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg border border-amber-200">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
           {/* Search Bar */}
           <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-amber-500" />
+            <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-amber-500" />
             <input
               type="text"
               placeholder="Search cigars..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 bg-amber-50 border border-amber-200 rounded-2xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200 text-amber-900 placeholder-amber-600"
+              className="w-full pl-10 sm:pl-12 pr-4 py-3 sm:py-4 bg-amber-50 border border-amber-200 rounded-2xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200 text-amber-900 placeholder-amber-600 text-sm sm:text-base"
             />
           </div>
 
           {/* Controls */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center justify-center sm:justify-end space-x-2 sm:space-x-3">
             {/* View Mode Toggle */}
             <div className="flex bg-amber-100 rounded-2xl p-1 shadow-md">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-3 rounded-xl transition-all duration-200 ${
+                className={`p-2 sm:p-3 rounded-xl transition-all duration-200 ${
                   viewMode === 'grid'
                     ? 'bg-amber-600 text-white shadow-lg'
                     : 'text-amber-700 hover:bg-amber-200'
                 }`}
               >
-                <Grid className="h-5 w-5" />
+                <Grid className="h-4 w-4 sm:h-5 sm:w-5" />
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`p-3 rounded-xl transition-all duration-200 ${
+                className={`p-2 sm:p-3 rounded-xl transition-all duration-200 ${
                   viewMode === 'list'
                     ? 'bg-amber-600 text-white shadow-lg'
                     : 'text-amber-700 hover:bg-amber-200'
                 }`}
               >
-                <List className="h-5 w-5" />
+                <List className="h-4 w-4 sm:h-5 sm:w-5" />
               </button>
             </div>
 
             {/* Filter Toggle */}
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="p-4 bg-amber-100 hover:bg-amber-200 rounded-2xl text-amber-700 transition-all duration-200 shadow-md hover:shadow-lg"
+              className="p-3 sm:p-4 bg-amber-100 hover:bg-amber-200 rounded-2xl text-amber-700 transition-all duration-200 shadow-md hover:shadow-lg"
             >
-              <Filter className="h-5 w-5" />
+              <Filter className="h-4 w-4 sm:h-5 sm:w-5" />
             </button>
 
             {/* Export Button */}
             <button
               onClick={exportData}
-              className="p-4 bg-amber-100 hover:bg-amber-200 rounded-2xl text-amber-700 transition-all duration-200 shadow-md hover:shadow-lg"
+              className="p-3 sm:p-4 bg-amber-100 hover:bg-amber-200 rounded-2xl text-amber-700 transition-all duration-200 shadow-md hover:shadow-lg"
             >
-              <Download className="h-5 w-5" />
+              <Download className="h-4 w-4 sm:h-5 sm:w-5" />
             </button>
 
             {/* Add Cigar Button */}
             <button
               onClick={() => setShowAddForm(true)}
-              className="p-4 bg-amber-600 hover:bg-amber-700 text-white rounded-2xl transition-all duration-200 shadow-lg hover:shadow-xl"
+              className="p-3 sm:p-4 bg-amber-600 hover:bg-amber-700 text-white rounded-2xl transition-all duration-200 shadow-lg hover:shadow-xl"
             >
-              <Plus className="h-5 w-5" />
+              <Plus className="h-4 w-4 sm:h-5 sm:w-5" />
             </button>
           </div>
         </div>
@@ -378,7 +378,7 @@ export default function EnhancedHumidorPage({
               transition={{ duration: 0.3 }}
               className="overflow-hidden"
             >
-              <div className="pt-6 border-t border-amber-200 mt-6">
+              <div className="pt-4 sm:pt-6 border-t border-amber-200 mt-4 sm:mt-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {/* Sort By */}
                   <div>
@@ -386,7 +386,7 @@ export default function EnhancedHumidorPage({
                     <select
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value)}
-                      className="w-full px-4 py-3 bg-amber-50 border border-amber-200 rounded-2xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200 text-amber-900"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-amber-50 border border-amber-200 rounded-2xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200 text-amber-900 text-sm"
                     >
                       <option value="brand">Brand</option>
                       <option value="addedDate">Date Added</option>
