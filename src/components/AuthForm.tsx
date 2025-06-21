@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Cigarette, Mail, Lock, Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
-import CigarCutterIcon from './CigarCutterIcon';
 
 interface AuthFormProps {
   onSignIn: (email: string, password: string) => Promise<{ error: any }>;
@@ -90,7 +89,7 @@ export default function AuthForm({ onSignIn, onSignUp }: AuthFormProps) {
         >
           <div className="flex justify-center mb-4">
             <div className="p-4 bg-gradient-to-r from-amber-600 to-yellow-600 rounded-full shadow-lg">
-              <CigarCutterIcon className="h-12 w-12 text-white" />
+              <Cigarette className="h-12 w-12 text-white" />
             </div>
           </div>
           <h1 className="text-3xl font-serif font-bold text-amber-900 mb-2">
