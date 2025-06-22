@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import { useAuth } from './hooks/useAuth';
 import { useSupabaseData } from './hooks/useSupabaseData';
-import AuthForm from './components/AuthForm';
 import Layout from './components/Layout';
 import EnhancedHumidorPage from './components/EnhancedHumidorPage';
 import WishlistPage from './components/WishlistPage';
@@ -11,11 +10,14 @@ import RecommendationsPage from './components/RecommendationsPage';
 import TastingNotesPage from './components/TastingNotesPage';
 import HumidorPage from './components/HumidorPage';
 import InsightsPage from './components/InsightsPage';
+import LandingPage from './components/LandingPage';
+import AuthPage from './components/AuthPage';
 
 function App() {
   const { user, loading: authLoading, signIn, signUp, signOut } = useAuth();
   const [currentPage, setCurrentPage] = useState('humidor');
-  
+  const [showAuthPage, setShowAuthPage] = useState(false);
+
   const {
     cigars,
     wishlist,
@@ -42,21 +44,44 @@ function App() {
     setCurrentPage(page);
   };
 
+  const handleShowAuth = () => {
+    setShowAuthPage(true);
+  };
+
+  const handleBackToLanding = () => {
+    setShowAuthPage(false);
+  };
+
   // Show loading screen while checking auth
   if (authLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-[#F5E8D0] via-[#E8D5B0] to-[#C18D5A] flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-amber-600 mx-auto mb-4"></div>
-          <p className="text-amber-800 font-medium">Loading...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#9E5A4A] mx-auto mb-4"></div>
+          <p className="text-[#3C2F2F] font-medium">Loading...</p>
         </div>
       </div>
     );
   }
 
-  // Show auth form if not logged in
+  // Show auth page if user wants to authenticate
+  if (showAuthPage && !user) {
+    return (
+      <AuthPage 
+        onSignIn={signIn} 
+        onSignUp={signUp} 
+        onBack={handleBackToLanding}
+      />
+    );
+  }
+
+  // Show landing page if not logged in
   if (!user) {
-    return <AuthForm onSignIn={signIn} onSignUp={signUp} />;
+    return <LandingPage 
+      onSignIn={signIn}
+      onSignUp={signUp}
+      user={user}
+    />;
   }
 
   const renderPage = () => {
