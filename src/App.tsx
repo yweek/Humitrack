@@ -12,6 +12,7 @@ import HumidorPage from './components/HumidorPage';
 import InsightsPage from './components/InsightsPage';
 import LandingPage from './components/LandingPage';
 import AuthPage from './components/AuthPage';
+import { CommunityPage } from './components/CommunityPage';
 
 function App() {
   const { user, loading: authLoading, signIn, signUp, signOut } = useAuth();

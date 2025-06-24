@@ -69,3 +69,14 @@ export interface UserTag {
   name: string;
   color: string;
 }
+
+export interface Review {
+  id: string;
+  cigarId?: string; // identifiant du cigare concerné, optionnel pour les messages généraux
+  author: string;
+  rating?: number; // note sur 5, optionnelle
+  comment: string;
+  photo?: string; // url ou base64
+  date: string;
+  likes: number;
+}

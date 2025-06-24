@@ -12,7 +12,8 @@ import {
   User, 
   LogOut, 
   ChevronRight,
-  Search
+  Search,
+  Users
 } from 'lucide-react';
 
 interface LayoutProps {
